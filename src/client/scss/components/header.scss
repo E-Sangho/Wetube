@@ -1,35 +1,90 @@
 header {
-    padding: 20px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .header__logo {
-        color: $red;
-        font-size: 36px;
-    }
-    ul {
+    height: 56px;
+    margin: 0 16px;
+    #head-container {
+        width: 100%;
         display: flex;
         justify-content: space-between;
+    }
+    #start {
+        display: flex;
         align-items: center;
-        li {
-            margin-left: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
+        button {
+            width: 40px;
+            margin-right: 16px;
+            font-size: 20px;
+            background-color: transparent;
+            border: none;
+            color: #fff;
         }
-        i {
-            font-size: 16px;
+        a {
+            font-size: 30px;
+            color: $red;
         }
     }
-    .header__btn {
-        background-color: white;
-        color: $bg;
-        padding: 5px 10px;
-        border-radius: 5px;
+
+    #center {
+        display: flex;
+        align-items: center;
+        #searchbox {
+            display: flex;
+            height: 40px;
+            width: 728px;
+            align-items: center;
+            #head-search-input {
+                height: 40px;
+                display: flex;
+                width: 572px;
+                align-items: center;
+                justify-content: center;
+                background-color: $search-input;
+                input {
+                    background-color: $search-input;
+                    border: none;
+                    height: 34px;
+                    width: 556px;
+                    color: $white;
+                    font-size: 16px;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+            #head-search {
+                height: 100%;
+                width: 64px;
+                background-color: $search-icon-background;
+                border: none;
+                color: $white;
+            }
+        }
     }
-    .header__avatar {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
+
+    #end {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 225px;
+        ul {
+            height: 40px;
+            width: 225px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            li {
+                a {
+                    display: block;
+                    font-size: 14px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                }
+            }
+            i {
+                font-size: 16px;
+            }
+        }
     }
 }

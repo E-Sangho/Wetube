@@ -1,26 +1,35 @@
-header
-    a(href="/").header__logo
-        i.fab.fa-youtube
-    nav
-        ul
-            li
-                a(href="/search")
+header 
+    #head-container 
+        #start 
+            button
+                i.fas.fa-bars
+            a(href="/").header__logo
+                i.fab.fa-youtube
+        #center 
+            #searchbox 
+                form#head-search-input(action="/search") 
+                    input#search-input(type="text" placeholder="검색" name="search_query")
+                button#head-search
                     i.fas.fa-search
-            if loggedIn
-                li
-                    a(href="/videos/upload") Upload Video
-                li
-                    a(href="/users/edit") Edit Profile
-                li
-                    a(href="/users/logout")  Log Out
-                li
-                    a(href=`/users/${loggedInUser._id}`)
-                        if !loggedInUser.avatarUrl
-                            span 
-                        else 
-                            img(src="/" + loggedInUser.avatarUrl).header__avatar
-            else
-                li
-                    a(href="/login") Login                        
-                li
-                    a(href="/join").header__btn Join
+                
+        #end 
+            nav
+                ul
+                    if loggedIn
+                        li
+                            a(href="/videos/upload") Upload Video
+                        li
+                            a(href="/users/edit") Edit Profile
+                        li
+                            a(href="/users/logout")  Log Out
+                        li
+                            a(href=`/users/${loggedInUser._id}`)
+                                if !loggedInUser.avatarUrl
+                                    span 
+                                else 
+                                    img(src="/" + loggedInUser.avatarUrl).header__avatar
+                    else
+                        li
+                            a(href="/login") Login                        
+                        li
+                            a(href="/join").header__btn Join

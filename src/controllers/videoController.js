@@ -2,16 +2,18 @@ import Video from "../models/Video";
 import User from "../models/User";
 
 export const home = async (req, res) => {
-    const videos = await Video.find({}).sort({ createdAt: "descending" }).populate("owner");
+    const videos = await Video.find({})
+        .sort({ createdAt: "descending" })
+        .populate("owner");
     return res.render("home", { pageTitle: "Home", videos });
 };
 export const watch = async (req, res) => {
     const { id } = req.params;
     const video = await Video.findById(id).populate("owner");
-    if(!video) {
-        return res.render("404", { pageTitle: "Video not found."});
+    if (!video) {
+        return res.render("404", { pageTitle: "Video not found." });
     }
-    return res.render("watch", { pageTitle: video.title, video});
+    return res.render("watch", { pageTitle: video.title, video });
 };
 export const getEdit = async (req, res) => {
     const { id } = req.params;
@@ -34,7 +36,7 @@ export const postEdit = async (req, res) => {
     } = req.session;
     const { title, description, hashtags } = req.body;
     const video = await Video.findById(id);
-    if(!video) {
+    if (!video) {
         return res.status(404).render("404", { pageTitle: "Video not found." });
     }
     if (String(video.owner) !== String(_id)) {
@@ -59,7 +61,7 @@ export const postUpload = async (req, res) => {
     const { path: fileUrl } = req.file;
     const { title, description, hashtags } = req.body;
     try {
-        const newVideo = await Video.create ({
+        const newVideo = await Video.create({
             title,
             description,
             fileUrl,
@@ -70,11 +72,11 @@ export const postUpload = async (req, res) => {
         user.videos.push(newVideo._id);
         user.save();
         return res.redirect("/");
-    } catch(error) {
+    } catch (error) {
         console.log(error);
-        return res.status(400).render("upload", { 
-            pageTitle: "Upload Video", 
-            errorMessage: error._message, 
+        return res.status(400).render("upload", {
+            pageTitle: "Upload Video",
+            errorMessage: error._message,
         });
     }
 };
@@ -96,12 +98,12 @@ export const deleteVideo = async (req, res) => {
 };
 
 export const search = async (req, res) => {
-    const { keyword } = req.query;
-    let videos =[];
-    if (keyword) {
+    const { search_query } = req.query;
+    let videos = [];
+    if (search_query) {
         videos = await Video.find({
             title: {
-                $regex: new RegExp(keyword, "i"),
+                $regex: new RegExp(search_query, "i"),
             },
         }).populate("owner");
     }

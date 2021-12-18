@@ -7,10 +7,10 @@ header
                 i.fab.fa-youtube
         #center 
             #searchbox 
-                form#head-search-input(action="/search") 
+                form#head-search-input(method="GET" action="/search") 
                     input#search-input(type="text" placeholder="검색" name="search_query")
-                button#head-search
-                    i.fas.fa-search
+                    button#head-search
+                        i.fas.fa-search
                 
         #end 
             nav

@@ -17,4 +17,6 @@ const commentSchema = new mongoose.Schema({
 
 const Comment = mongoose.model("Comment", commentSchema);
 
+let fornothing;
+
 export default Comment;

@@ -173,12 +173,17 @@ export const postEdit = async (req, res) => {
             return res.redirect("/users/edit");
         }
     }
+    const isHeroku = process.env.NODE_ENV === "production";
     const updatedUser = await User.findByIdAndUpdate(
         _id,
         {
             name,
             email,
-            avatarUrl: file ? file.location : avatarUrl,
+            avatarUrl: file
+                ? isHeroku
+                    ? file.location
+                    : file.path
+                : avatarUrl,
             username,
             location,
         },

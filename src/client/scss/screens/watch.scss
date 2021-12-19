@@ -34,3 +34,19 @@
         margin-bottom: 10px;
     }
 }
+
+.video__comment-form#commentForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.video__comment {
+    display: flex;
+    justify-content: space-between;
+    div {
+        i {
+            margin-right: 10px;
+        }
+    }
+}

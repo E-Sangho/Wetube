@@ -14,6 +14,7 @@ const addComment = (text, id) => {
     const span2 = document.createElement("i");
     span2.className = "commentDeleteBtn";
     span2.className = "fas fa-times";
+    span2.dataset.id = id;
     newComment.appendChild(icon);
     newComment.appendChild(span);
     newComment.appendChild(span2);
@@ -50,11 +51,17 @@ const handleDeleteComment = async (event) => {
             dataset: { id },
         },
     } = event;
-    console.log(event.target.parentNode);
-    parentNode.remove();
-    await fetch(`/api/comment/${id}/delete`, {
+    const videoId = videoContainer.dataset.id;
+    const response = await fetch(`/api/comments/${id}/delete`, {
         method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ videoId }),
     });
+    if (response.status === 200) {
+        parentNode.remove();
+    }
 };
 
 if (form) {

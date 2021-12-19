@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const videoSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true, maxlength: 80 },
-    fileUrl: { type: String, required: true},
+    fileUrl: { type: String, required: true },
     owner: { type: Schema.Types.ObjectId, required: true, ref: "User" },
     description: { type: String, required: true, trim: true, minlength: 20 },
     createdAt: { type: Date, required: true, default: Date.now },
@@ -11,6 +11,13 @@ const videoSchema = new mongoose.Schema({
         views: { type: Number, default: 0 },
         rating: { type: Number, default: 0 },
     },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Comment",
+        },
+    ],
 });
 
 videoSchema.static("formatHashtags", function (hashtags) {

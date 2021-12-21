@@ -1,7 +1,7 @@
 {
-    "type": "module",
     "name": "youtube-clone",
     "version": "1.0.0",
+    "type": "module",
     "description": "The best way to watch videos.",
     "repository": {
         "type": "git",

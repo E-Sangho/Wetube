@@ -1,7 +1,6 @@
+.DS_Store
 /node_modules
 .env
 /uploads
-.DS_Store
 /assets
 /build
-/hidden
